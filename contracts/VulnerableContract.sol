@@ -7,7 +7,7 @@ contract VulnerableContract {
 
     // 存款函数，允许用户向合约存款
     function deposit() public payable {
-        balances[msg.sender] = balances[msg.sender] + msg.value;
+        balances[msg.sender] += msg.value;
     }
 
     // 提款函数，存在重入攻击漏洞
@@ -24,9 +24,15 @@ contract VulnerableContract {
         require(sent, "Failed to send Ether");
 
         // 更新余额
-        unchecked {
+        if (balances[msg.sender] >= _amount) {
             balances[msg.sender] -= _amount;
+        } else {
+            balances[msg.sender] = 0;
         }
+        // unchecked 写法，在 Solidity 0.8.0 版本之前，没有下溢检查，可以被重入攻击
+        // unchecked {
+        //     balances[msg.sender] -= _amount;
+        // }
     }
 
     // 获取合约的余额

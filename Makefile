@@ -4,13 +4,13 @@ transfer:
 	@npx hardhat run ./transfer.js --network localhost
 deploy:
 	@npx hardhat run ./deploy.js --network localhost
-attack:
+attackcontract:
 	@npx hardhat run ./attackcontract.js --network localhost
-at:
+attack:
 	@npx hardhat run ./attack.js --network localhost
 start:
 	@npx hardhat run ./contract.js --network localhost
-	@npx hardhat run ./attack.js --network localhost
+	@npx hardhat run ./attackcontract.js --network localhost
 	@npx hardhat run ./transfer.js --network localhost
 	@npx hardhat run ./balance.js --network localhost
 withdraw:
