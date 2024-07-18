@@ -21,5 +21,3 @@ this contains four steps:
 ## help check
 `make check` to check the balance of the first account `xxxx2266`
 `make balance` to check the balance of the contract(which to be attacked)
-
-
